@@ -19,6 +19,8 @@
     --white:#FFFFFF;
     --line: rgba(10,14,63,0.10);
     --line-soft: rgba(10,14,63,0.07);
+    --gray-ink: #4B4D68;
+    --gray-mute: #8A8BA0;
     --radius: 20px;
     --maxw: 1180px;
     --shadow-sm: 0 2px 10px rgba(10,14,63,0.05);
@@ -151,15 +153,15 @@
   .hero-orb.o1{ width:300px; height:300px; background:var(--yellow); opacity:.22; top:-90px; right:6%; }
   .hero-orb.o2{ width:220px; height:220px; background:#6E8CFF; opacity:.28; bottom:-70px; left:4%; animation-delay:2.2s; }
   @keyframes orbFloat{ 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-26px) scale(1.07); } }
-  .hero .wrap{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:center; position:relative; z-index:1; }
+  .hero .wrap{ position:relative; z-index:1; max-width:820px; text-align:center; margin:0 auto; }
   .hero h1{ font-size:clamp(42px,6.4vw,72px); color:#fff; overflow:hidden; }
   .hero h1 em{ font-style:normal; color:var(--yellow); }
   .word-up{ display:inline-block; opacity:0; transform:translateY(100%); animation:wordUp .7s cubic-bezier(.22,.9,.3,1) forwards; }
   @keyframes wordUp{ to{ opacity:1; transform:translateY(0); } }
   .fade-up{ opacity:0; transform:translateY(16px); animation:fadeUp .7s ease forwards; }
   @keyframes fadeUp{ to{ opacity:1; transform:translateY(0); } }
-  .hero p.lead{ font-size:18px; font-weight:500; color:rgba(255,255,255,0.85); max-width:460px; margin-top:22px; line-height:1.55; }
-  .hero-ctas{ display:flex; gap:14px; margin-top:38px; flex-wrap:wrap; }
+  .hero p.lead{ font-size:18px; font-weight:500; color:rgba(255,255,255,0.85); max-width:520px; margin:22px auto 0; line-height:1.55; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:38px; flex-wrap:wrap; justify-content:center; }
   .scroll-cue{
     position:absolute; bottom:18px; left:50%; transform:translateX(-50%); z-index:2;
     display:flex; flex-direction:column; align-items:center; gap:6px; text-decoration:none;
@@ -168,122 +170,62 @@
   .scroll-cue .icon{ width:16px; height:16px; animation:bounceDown 1.8s ease-in-out infinite; }
   @keyframes bounceDown{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(6px); } }
   @media (max-width:900px){ .scroll-cue{ display:none; } }
-  .hero-art{ position:relative; z-index:1; }
-  .hero-showcase{
-    display:grid; grid-template-columns:1.2fr 1fr; grid-template-rows:1fr 1fr; gap:14px; height:420px;
-  }
-  .hero-tile{
-    background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16);
-    border-radius:20px; position:relative; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-    transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease;
-  }
-  .hero-tile:hover{ transform:translateY(-4px); border-color:rgba(255,255,255,0.32); }
-  .hero-tile.t-main{ grid-row:1/3; }
-  .hero-tile .icon{ width:56px; height:56px; stroke-width:1.3; color:rgba(255,255,255,0.9); opacity:.85; }
-  .hero-tile.t-main .icon{ width:78px; height:78px; }
-  .hero-tile .tile-tag{
-    position:absolute; bottom:12px; left:12px; right:12px;
-    font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.05em; text-transform:uppercase;
-    color:rgba(255,255,255,0.4); text-align:center;
-  }
-  .hero-tile::before{
-    content:''; position:absolute; inset:0;
-    background:radial-gradient(circle at 30% 20%, rgba(255,198,41,0.10), transparent 60%);
-  }
-  .hero-tile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .hero-tile.has-photo::before{ display:none; }
-  .hero-tile.has-photo .icon, .hero-tile.has-photo .tile-tag{ display:none; }
-  @media (max-width:420px){ .hero-showcase{ height:320px; } }
   .hero-stats{
     display:grid; grid-template-columns:repeat(3,1fr); gap:0;
     margin-top:64px; border-top:1px solid rgba(255,255,255,0.16); padding-top:28px;
+    max-width:640px; margin-left:auto; margin-right:auto;
   }
   .hero-stats div{ padding-right:16px; }
   .hero-stats .num{ font-family:'IBM Plex Mono', monospace; font-size:32px; color:var(--yellow); font-weight:600;}
   .hero-stats .label{ font-size:13px; color:rgba(255,255,255,0.68); margin-top:6px; }
-  @media (max-width:900px){
-    .hero .wrap{ grid-template-columns:1fr; }
-    .hero-art{ order:-1; max-width:420px; margin:0 auto; }
-  }
 
   /* ---------- section basics ---------- */
   section{ padding:clamp(80px,10vw,148px) 0; }
   .bg-white{ background:var(--white); }
   .bg-tint{ background:var(--paper-blue); }
-  .section-head{ max-width:600px; margin-bottom:68px; }
+  .section-head{ max-width:600px; margin-bottom:72px; }
+  .section-head p{ max-width:520px; }
   .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
   .section-head .eyebrow{ color:var(--blue); }
   .section-head .eyebrow::before{ background:var(--blue); }
   .section-head h2{ font-size:clamp(32px,3.8vw,48px); color:var(--blue-deep); }
-  .section-head p{ margin-top:18px; font-size:17px; font-weight:500; color:#565873; line-height:1.6; }
+  .section-head p{ margin-top:18px; font-size:17px; font-weight:500; color:var(--gray-ink); line-height:1.6; }
 
-  /* ---------- productos ---------- */
-  .productos-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
-  .producto-card{
+  /* ---------- servicios ---------- */
+  .servicios-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; }
+  .servicio-card{
     background:#fff; border:1px solid var(--line); border-radius:var(--radius);
     overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow-sm);
     transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
   }
-  .producto-card:hover{ transform:translateY(-7px); box-shadow:var(--shadow-md); border-color:transparent; }
-  .producto-img{
-    aspect-ratio:4/3; background:var(--paper-blue); display:flex; align-items:center; justify-content:center;
+  .servicio-card:hover{ transform:translateY(-7px); box-shadow:var(--shadow-md); border-color:transparent; }
+  .servicio-img{
+    aspect-ratio:16/11; background:var(--paper-blue); display:flex; align-items:center; justify-content:center;
     color:var(--blue); position:relative;
   }
-  .producto-img .icon{ width:38px; height:38px; opacity:.55; transition:transform .45s cubic-bezier(.2,.8,.2,1); }
-  .producto-card:hover .producto-img .icon{ transform:scale(1.14) rotate(-4deg); }
-  .producto-img img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
-  .producto-card:hover .producto-img img{ transform:scale(1.06); }
-  .productos-grid .reveal:nth-child(1){ transition-delay:0s; }
-  .productos-grid .reveal:nth-child(2){ transition-delay:.1s; }
-  .productos-grid .reveal:nth-child(3){ transition-delay:.2s; }
-  .productos-grid .reveal:nth-child(4){ transition-delay:.3s; }
-  .producto-img span.swap-note{
-    position:absolute; top:12px; right:12px; text-align:center; background:rgba(20,0,255,0.06);
-    border-radius:999px; padding:4px 10px;
-    font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.04em; color:rgba(20,0,255,0.45);
+  .servicio-img .icon{ width:44px; height:44px; opacity:.5; transition:transform .45s cubic-bezier(.2,.8,.2,1); }
+  .servicio-card:hover .servicio-img .icon{ transform:scale(1.12) rotate(-4deg); }
+  .servicio-img img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .servicio-card:hover .servicio-img img{ transform:scale(1.06); }
+  .servicios-grid .reveal:nth-child(1){ transition-delay:0s; }
+  .servicios-grid .reveal:nth-child(2){ transition-delay:.12s; }
+  .servicio-img span.swap-note{
+    position:absolute; top:14px; right:14px; text-align:center; background:rgba(20,0,255,0.06);
+    border-radius:999px; padding:5px 12px;
+    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.04em; color:rgba(20,0,255,0.45);
   }
-  .producto-body{ padding:24px 24px 26px; display:flex; flex-direction:column; flex:1; }
-  .producto-card h3{ font-size:clamp(19px,2vw,22px); color:var(--blue-deep); }
-  .producto-card p{ font-size:15.5px; font-weight:500; color:#5a5b74; margin-top:9px; line-height:1.55; flex:1; }
-  .producto-cta{
-    display:inline-flex; align-items:center; gap:6px; margin-top:20px;
+  .servicio-body{ padding:30px 30px 34px; display:flex; flex-direction:column; flex:1; }
+  .servicio-card h3{ font-size:clamp(20px,2.2vw,24px); color:var(--blue-deep); }
+  .servicio-card p{ font-size:15.5px; font-weight:500; color:var(--gray-ink); margin-top:11px; line-height:1.6; flex:1; }
+  .servicio-cta{
+    display:inline-flex; align-items:center; gap:6px; margin-top:22px;
     font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:600; letter-spacing:.03em;
     color:var(--blue); text-decoration:none; text-transform:uppercase; width:fit-content;
     border-bottom:1.5px solid transparent; transition:border-color .15s ease;
   }
-  .producto-cta:hover{ border-color:var(--blue); }
-  .producto-cta .icon{ width:13px; height:13px; }
-  .no-ropa{
-    margin-top:34px; display:flex; align-items:center; gap:10px;
-    font-size:13.5px; color:#5a5b74; font-family:'IBM Plex Mono', monospace;
-  }
-  .no-ropa .icon{ width:16px; height:16px; color:#C6432E; }
-  @media (max-width:860px){ .productos-grid{ grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:520px){ .productos-grid{ grid-template-columns:1fr;} }
-
-  /* ---------- marcas / clientes ---------- */
-  .marcas{ background:var(--paper-blue); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); }
-  .marcas-head{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:44px; }
-  .marcas-head h2{ font-size:clamp(24px,2.8vw,32px); color:var(--blue-deep); }
-  .marcas-strip{
-    display:flex; align-items:center; gap:0; overflow:hidden;
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  }
-  .marcas-track{ display:flex; align-items:center; animation: scroll-logos 28s linear infinite; }
-  .marcas-strip:hover .marcas-track{ animation-play-state:paused; }
-  .marca-logo{
-    flex:0 0 auto; padding:26px 46px; font-family:'Archivo Black'; font-size:19px;
-    color:var(--blue-deep); opacity:.42; letter-spacing:-0.02em; white-space:nowrap;
-    border-right:1px solid var(--line); transition:opacity .2s ease, transform .2s ease; cursor:default;
-  }
-  .marca-logo:hover{ opacity:.85; transform:scale(1.04); }
-  .marca-logo.is-img{ display:flex; align-items:center; padding:18px 40px; opacity:.7; }
-  .marca-logo.is-img img{ height:30px; width:auto; }
-  .marca-logo.is-img:hover{ opacity:1; }
-  @keyframes scroll-logos{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
-  .marcas-note{ margin-top:20px; font-size:12.5px; font-family:'IBM Plex Mono', monospace; color:#8a8ba0; }
-  @media (prefers-reduced-motion: reduce){ .marcas-track{ animation:none; flex-wrap:wrap; } }
+  .servicio-cta:hover{ border-color:var(--blue); }
+  .servicio-cta .icon{ width:13px; height:13px; }
+  @media (max-width:760px){ .servicios-grid{ grid-template-columns:1fr;} }
 
   /* ---------- recorrido / video ---------- */
   .recorrido{ background:var(--blue-deep); color:#fff; }
@@ -343,11 +285,42 @@
   }
   .confianza-card:hover .icon-box{ transform:scale(1.1); background:var(--yellow); color:var(--blue-deep); }
   .confianza-card h3{ font-size:clamp(19px,2vw,22px); color:var(--blue-deep); position:relative; z-index:1; }
-  .confianza-card p{ font-size:15.5px; font-weight:500; color:#5a5b74; margin-top:11px; line-height:1.55; position:relative; z-index:1; }
+  .confianza-card p{ font-size:15.5px; font-weight:500; color:var(--gray-ink); margin-top:11px; line-height:1.55; position:relative; z-index:1; }
   .confianza-grid .reveal:nth-child(1){ transition-delay:0s; }
   .confianza-grid .reveal:nth-child(2){ transition-delay:.12s; }
   .confianza-grid .reveal:nth-child(3){ transition-delay:.24s; }
   @media (max-width:820px){ .confianza-grid{ grid-template-columns:1fr; gap:20px; } }
+
+  /* ---------- marcas / clientes ---------- */
+  .marcas{ background:var(--paper-blue); }
+  .marcas-head{ margin-bottom:52px; }
+  .marcas-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .marca-card{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    aspect-ratio:16/10; display:flex; align-items:center; justify-content:center;
+    padding:20px; box-shadow:var(--shadow-sm); position:relative; overflow:hidden;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+  }
+  .marca-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-md); border-color:transparent; }
+  .marca-card img{ max-height:56px; width:auto; max-width:100%; object-fit:contain; }
+  .marca-card .marca-placeholder{
+    font-family:'Archivo Black'; font-size:16px; color:var(--blue-deep); opacity:.28; letter-spacing:-0.01em; text-align:center;
+  }
+  .marca-card .marca-tag{
+    position:absolute; top:10px; right:12px;
+    font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:.05em; text-transform:uppercase;
+    color:rgba(20,0,255,0.35);
+  }
+  .marcas-grid .reveal:nth-child(1){ transition-delay:0s; }
+  .marcas-grid .reveal:nth-child(2){ transition-delay:.06s; }
+  .marcas-grid .reveal:nth-child(3){ transition-delay:.12s; }
+  .marcas-grid .reveal:nth-child(4){ transition-delay:.18s; }
+  .marcas-grid .reveal:nth-child(5){ transition-delay:.24s; }
+  .marcas-grid .reveal:nth-child(6){ transition-delay:.3s; }
+  .marcas-grid .reveal:nth-child(7){ transition-delay:.36s; }
+  .marcas-grid .reveal:nth-child(8){ transition-delay:.42s; }
+  @media (max-width:820px){ .marcas-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:560px){ .marcas-grid{ grid-template-columns:repeat(2,1fr); } }
 
   /* ---------- faq ---------- */
   .faq{ background:var(--paper-blue); }
@@ -366,19 +339,19 @@
   .faq-q .icon{ color:var(--blue); flex:0 0 auto; transition:transform .3s cubic-bezier(.2,.8,.2,1); }
   .faq-item.open .faq-q .icon{ transform:rotate(180deg); }
   .faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
-  .faq-a p{ margin:0 4px 22px 40px; font-size:15px; font-weight:500; color:#4d4f6b; line-height:1.6; max-width:560px; }
+  .faq-a p{ margin:0 4px 22px 40px; font-size:15px; font-weight:500; color:var(--gray-ink); line-height:1.6; max-width:560px; }
 
   /* ---------- formulario ---------- */
   .contacto{ background:#fff; }
   .contacto-wrap{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; }
   .contacto-info h2{ font-size:clamp(28px,3.6vw,40px); color:var(--blue-deep); }
-  .contacto-info p{ margin-top:18px; color:#4d4f6b; line-height:1.6; font-size:17px; font-weight:500; }
+  .contacto-info p{ margin-top:18px; color:var(--gray-ink); line-height:1.6; font-size:17px; font-weight:500; }
   .contacto-info .info-row{
     display:flex; gap:14px; align-items:flex-start; margin-top:26px; font-size:14.5px;
   }
   .contacto-info .info-row .icon{ color:var(--blue); flex:0 0 auto; margin-top:2px; }
   .contacto-info .info-row .k{ font-family:'IBM Plex Mono', monospace; color:var(--blue-deep); font-weight:600; display:block; font-size:12px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:2px; }
-  .contacto-info .info-row span:not(.k){ color:#5a5b74; }
+  .contacto-info .info-row span:not(.k){ color:var(--gray-ink); }
   .form-card{
     background:var(--paper); border:1px solid var(--line); border-radius:22px;
     padding:40px; position:relative; box-shadow:var(--shadow-md);
@@ -388,6 +361,13 @@
     background:repeating-linear-gradient(90deg, var(--yellow) 0 12px, transparent 12px 20px);
     border-radius:0 0 4px 4px;
   }
+  .form-kicker{ display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+  .form-kicker-badge{
+    width:44px; height:44px; border-radius:12px; background:var(--paper-blue);
+    display:flex; align-items:center; justify-content:center; color:var(--blue); flex:0 0 auto;
+  }
+  .form-kicker-title{ font-family:'Plus Jakarta Sans'; font-weight:800; font-size:16px; color:var(--blue-deep); }
+  .form-kicker-sub{ font-size:13px; color:var(--gray-ink); margin-top:2px; }
   .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:12px; }
   .field{ display:flex; flex-direction:column; gap:7px; }
   .field.full{ grid-column:1/-1; }
@@ -400,10 +380,10 @@
   }
   .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--blue); }
   .field textarea{ resize:vertical; min-height:90px; }
-  .privacy{ display:flex; align-items:flex-start; gap:10px; margin-top:20px; font-size:13px; color:#5a5b74; }
+  .privacy{ display:flex; align-items:flex-start; gap:10px; margin-top:20px; font-size:13px; color:var(--gray-ink); }
   .privacy input{ margin-top:3px; }
   .form-actions{ display:flex; gap:14px; margin-top:26px; align-items:center; }
-  .form-note{ font-size:12.5px; color:#8a8ba0; margin-top:16px; }
+  .form-note{ font-size:12.5px; color:var(--gray-mute); margin-top:16px; }
   #formStatus{ font-size:14px; margin-top:16px; font-weight:600; }
   #formStatus.ok{ color:#0a7d3a; }
   #formStatus.err{ color:#c62828; }
@@ -433,11 +413,10 @@
   .reveal.in{ opacity:1; transform:translateY(0); }
 
   @media (prefers-reduced-motion: reduce){
-    .btn, .producto-card, .wa-float, .reveal{ transition:none; }
+    .btn, .servicio-card, .wa-float, .reveal{ transition:none; }
     .reveal{ opacity:1; transform:none; }
     .word-up, .fade-up{ animation:none; opacity:1; transform:none; }
     .hero-orb, .scroll-cue .icon, .hero-ctas .btn-primary{ animation:none; }
-    .marcas-track{ animation:none; flex-wrap:wrap; }
   }
 </style>
 </head>
@@ -448,10 +427,8 @@
 <!-- icon sprite: single consistent line-icon family, used across the page -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="i-backpack" viewBox="0 0 24 24"><path d="M7 9V6a5 5 0 0 1 10 0v3"/><rect x="5" y="9" width="14" height="12" rx="3"/><path d="M9 9v3h6V9"/><path d="M9 15h6"/></symbol>
-    <symbol id="i-tote" viewBox="0 0 24 24"><path d="M8 8V6a4 4 0 0 1 8 0v2"/><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/></symbol>
-    <symbol id="i-lunchbox" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/><path d="M4 13h16"/></symbol>
-    <symbol id="i-case" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M3 12h18"/><circle cx="18" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V11l5 3V11l5 3V8l7 4v9H3Z"/><path d="M7 21v-4M12 21v-4M17 21v-4"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8c-1.5-4-6-4-6 0M12 8c1.5-4 6-4 6 0"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
     <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h6"/></symbol>
@@ -470,11 +447,11 @@
       <img src="logo.png" alt="TUTOKEYA! Confección & merchandising">
     </div>
     <nav class="nav-links">
-      <a href="#productos">Productos</a>
+      <a href="#servicios">Servicios</a>
       <a href="#recorrido">Recorrido</a>
-      <a href="#confianza">Nosotros</a>
+      <a href="#confianza">Por qué nosotros</a>
+      <a href="#marcas">Marcas</a>
       <a href="#faq">FAQ</a>
-      <a href="#contacto">Contacto</a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-primary" href="#contacto"><span class="long">Cotizar </span>ahora</a>
@@ -486,103 +463,57 @@
   <div class="hero-orb o1" aria-hidden="true"></div>
   <div class="hero-orb o2" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-copy">
-      <span class="eyebrow fade-up" style="animation-delay:.05s;">Confección B2B</span>
-      <h1><span class="word-up" style="animation-delay:.12s;">Tu</span> <span class="word-up" style="animation-delay:.2s;">producción,</span> <span class="word-up" style="animation-delay:.3s; color:var(--yellow);">sin</span> <span class="word-up" style="animation-delay:.38s; color:var(--yellow);">vueltas.</span></h1>
-      <p class="lead fade-up" style="animation-delay:.5s;">Mochilas, bolsos, loncheras y cartucheras para tu empresa.</p>
-      <div class="hero-ctas fade-up" style="animation-delay:.62s;">
-        <a class="btn btn-primary" href="#contacto"><svg class="icon" style="color:var(--blue-deep)"><use href="#i-arrow"/></svg>Solicitar cotización</a>
-        <a class="btn btn-outline" id="waHeroBtn" href="#" target="_blank" rel="noopener"><svg class="icon" style="color:#fff"><use href="#i-message"/></svg>WhatsApp</a>
-      </div>
-      <div class="hero-stats fade-up" style="animation-delay:.74s;">
-        <div><div class="num" data-count="4">0</div><div class="label">líneas de producto</div></div>
-        <div><div class="num">B2B</div><div class="label">enfoque exclusivo</div></div>
-        <div><div class="num" data-count="100" data-suffix="%">0%</div><div class="label">seguimiento del pedido</div></div>
-      </div>
+    <span class="eyebrow fade-up" style="animation-delay:.05s; justify-content:center;">Confección B2B</span>
+    <h1><span class="word-up" style="animation-delay:.12s;">Mochilas,</span> <span class="word-up" style="animation-delay:.2s;">bolsos</span> <span class="word-up" style="animation-delay:.28s;">y</span> <span class="word-up" style="animation-delay:.36s; color:var(--yellow);">merchandising</span> <span class="word-up" style="animation-delay:.44s;">fabricados</span> <span class="word-up" style="animation-delay:.52s;">a</span> <span class="word-up" style="animation-delay:.6s; color:var(--yellow);">tu</span> <span class="word-up" style="animation-delay:.68s; color:var(--yellow);">medida.</span></h1>
+    <p class="lead fade-up" style="animation-delay:.8s;">Producción por lote o a medida, con ficha técnica aprobada y trazabilidad real en cada etapa del proceso.</p>
+    <div class="hero-ctas fade-up" style="animation-delay:.92s;">
+      <a class="btn btn-primary" href="#contacto"><svg class="icon" style="color:var(--blue-deep)"><use href="#i-arrow"/></svg>Solicitar cotización</a>
+      <a class="btn btn-outline" id="waHeroBtn" href="#" target="_blank" rel="noopener"><svg class="icon" style="color:#fff"><use href="#i-message"/></svg>WhatsApp</a>
     </div>
-    <div class="hero-art fade-up" style="animation-delay:.3s;">
-      <!-- Sustituir cada .hero-tile por <img> con fotografía real de producto -->
-      <div class="hero-showcase">
-        <div class="hero-tile t-main" data-categoria="mochilas"><svg class="icon"><use href="#i-backpack"/></svg><span class="tile-tag">Foto real pendiente</span></div>
-        <div class="hero-tile" data-categoria="bolsos"><svg class="icon"><use href="#i-tote"/></svg></div>
-        <div class="hero-tile" data-categoria="loncheras"><svg class="icon"><use href="#i-lunchbox"/></svg></div>
-      </div>
+    <div class="hero-stats fade-up" style="animation-delay:1.04s;">
+      <div><div class="num" data-count="4">0</div><div class="label">líneas de producto</div></div>
+      <div><div class="num">B2B</div><div class="label">enfoque exclusivo</div></div>
+      <div><div class="num" data-count="100" data-suffix="%">0%</div><div class="label">trazabilidad del pedido</div></div>
     </div>
   </div>
-  <a class="scroll-cue" href="#productos">Ver más<svg class="icon"><use href="#i-chevron"/></svg></a>
+  <a class="scroll-cue" href="#servicios">Ver más<svg class="icon"><use href="#i-chevron"/></svg></a>
 </section>
 
-<section id="productos" class="bg-white">
+<section id="servicios" class="bg-white">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Qué confeccionamos</span>
-      <h2>Cuatro líneas, un mismo <em class="hl">estándar</em>.</h2>
-      <p>Por lote o a medida. Ficha técnica antes de producir.</p>
+      <span class="eyebrow">Qué hacemos</span>
+      <h2>Dos servicios, un solo <em class="hl">estándar</em> de calidad.</h2>
+      <p>Ya sea que tengas tu propia marca o necesites regalos para tu equipo, lo fabricamos con ficha técnica aprobada antes de producir.</p>
     </div>
-    <div class="productos-grid">
-      <div class="producto-card reveal">
-        <div class="producto-img" data-categoria="mochilas"><svg class="icon"><use href="#i-backpack"/></svg><span class="swap-note">Foto pendiente</span></div>
-        <div class="producto-body">
-          <h3>Mochilas</h3>
-          <p>Escolares, urbanas y corporativas.</p>
-          <a class="producto-cta" href="#contacto">Cotizar<svg class="icon"><use href="#i-arrow"/></svg></a>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal">
+        <div class="servicio-img" data-categoria="servicio-maquila"><svg class="icon"><use href="#i-factory"/></svg><span class="swap-note">Foto pendiente</span></div>
+        <div class="servicio-body">
+          <h3>Maquila y confección (B2B)</h3>
+          <p>¿Tienes un diseño propio? Nosotros lo hacemos realidad bajo tu marca, ofreciéndote cotización de muestras, producción escalable y acabados premium de alta calidad.</p>
+          <a class="servicio-cta" href="#contacto">Cotizar<svg class="icon"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
-      <div class="producto-card reveal">
-        <div class="producto-img" data-categoria="bolsos"><svg class="icon"><use href="#i-tote"/></svg><span class="swap-note">Foto pendiente</span></div>
-        <div class="producto-body">
-          <h3>Bolsos</h3>
-          <p>Totebags para merchandising.</p>
-          <a class="producto-cta" href="#contacto">Cotizar<svg class="icon"><use href="#i-arrow"/></svg></a>
-        </div>
-      </div>
-      <div class="producto-card reveal">
-        <div class="producto-img" data-categoria="loncheras"><svg class="icon"><use href="#i-lunchbox"/></svg><span class="swap-note">Foto pendiente</span></div>
-        <div class="producto-body">
-          <h3>Loncheras</h3>
-          <p>Térmicas o de tela, para campañas.</p>
-          <a class="producto-cta" href="#contacto">Cotizar<svg class="icon"><use href="#i-arrow"/></svg></a>
-        </div>
-      </div>
-      <div class="producto-card reveal">
-        <div class="producto-img" data-categoria="cartucheras"><svg class="icon"><use href="#i-case"/></svg><span class="swap-note">Foto pendiente</span></div>
-        <div class="producto-body">
-          <h3>Cartucheras</h3>
-          <p>Compactas, para kits y regalos.</p>
-          <a class="producto-cta" href="#contacto">Cotizar<svg class="icon"><use href="#i-arrow"/></svg></a>
+      <div class="servicio-card reveal">
+        <div class="servicio-img" data-categoria="servicio-regalos"><svg class="icon"><use href="#i-gift"/></svg><span class="swap-note">Foto pendiente</span></div>
+        <div class="servicio-body">
+          <h3>Regalos corporativos</h3>
+          <p>Diseñamos productos funcionales para colaboradores o eventos, personalizados a tu medida o desde un catálogo, con calidad y durabilidad garantizadas.</p>
+          <a class="servicio-cta" href="#contacto">Cotizar<svg class="icon"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
-    <div class="no-ropa"><svg class="icon"><use href="#i-check"/></svg> No confeccionamos prendas de vestir.</div>
+    <div class="no-ropa" style="margin-top:34px; display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--gray-ink); font-family:'IBM Plex Mono', monospace;"><svg class="icon" style="width:16px;height:16px;color:var(--blue);"><use href="#i-check"/></svg> </div>
   </div>
-</section>
-
-<section class="marcas">
-  <div class="wrap reveal">
-    <div class="marcas-head">
-      <h2>Marcas que ya <em class="hl">confían</em> en nosotros.</h2>
-    </div>
-  </div>
-  <div class="marcas-strip reveal">
-    <div class="marcas-track" id="marcasTrack" data-categoria="marcas">
-      <!-- Reemplaza cada .marca-logo por <img src="cliente-x.png" alt="Nombre cliente"> con el logo real del cliente -->
-      <div class="marca-logo">CLIENTE A</div>
-      <div class="marca-logo">CLIENTE B</div>
-      <div class="marca-logo">CLIENTE C</div>
-      <div class="marca-logo">CLIENTE D</div>
-      <div class="marca-logo">CLIENTE E</div>
-      <div class="marca-logo">CLIENTE F</div>
-    </div>
-  </div>
-  <!-- Nota interna: reemplazar los logos placeholder por logos reales antes de publicar -->
 </section>
 
 <section class="recorrido" id="recorrido">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">El recorrido completo</span>
-      <h2>De la tela al <em class="hl">despacho</em>.</h2>
-      <p>Cada etapa, en video real de nuestro taller.</p>
+      <h2>De la tela al <em class="hl">despacho</em>, sin pasos ocultos.</h2>
+      <p>Video real de cada etapa, grabado directamente en nuestro taller.</p>
     </div>
     <div class="recorrido-grid" id="videoGrid">
       <div class="recorrido-empty">Cargando el recorrido…</div>
@@ -594,27 +525,43 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Por qué nosotros</span>
-      <h2>Lo que compras necesita <em class="hl">verse</em>.</h2>
+      <h2>Sabes exactamente qué recibes, <em class="hl">antes</em> de producir.</h2>
+      <p>Tres garantías que acompañan cada pedido, sin costo adicional.</p>
     </div>
     <div class="confianza-grid">
       <div class="confianza-card reveal">
         <span class="ghost-num">01</span>
         <div class="icon-box"><svg class="icon"><use href="#i-doc"/></svg></div>
         <h3>Ficha técnica</h3>
-        <p>Medidas y materiales, por escrito.</p>
+        <p>Medidas, materiales y acabados documentados antes de fabricar.</p>
       </div>
       <div class="confianza-card reveal">
         <span class="ghost-num">02</span>
         <div class="icon-box"><svg class="icon"><use href="#i-user"/></svg></div>
         <h3>Un solo interlocutor</h3>
-        <p>Un responsable directo. Sin mesas de ayuda.</p>
+        <p>Un responsable directo para tu cuenta, sin mesas de ayuda.</p>
       </div>
       <div class="confianza-card reveal">
         <span class="ghost-num">03</span>
         <div class="icon-box"><svg class="icon"><use href="#i-route"/></svg></div>
         <h3>Trazabilidad real</h3>
-        <p>Sabes en qué etapa está tu pedido.</p>
+        <p>Visibilidad total: sabes en qué etapa está tu pedido.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="marcas" id="marcas">
+  <div class="wrap">
+    <div class="marcas-head reveal">
+      <span class="eyebrow" style="margin-bottom:10px;">Confianza</span>
+      <h2 style="font-size:clamp(32px,3.8vw,48px); color:var(--blue-deep);">Empresas que ya <em class="hl">confían</em> su producción a nuestro taller.</h2>
+    </div>
+    <div class="marcas-grid" id="marcasGrid">
+      <div class="marca-card reveal"><span class="marca-placeholder">CLIENTE A</span><span class="marca-tag">Logo pendiente</span></div>
+      <div class="marca-card reveal"><span class="marca-placeholder">CLIENTE B</span><span class="marca-tag">Logo pendiente</span></div>
+      <div class="marca-card reveal"><span class="marca-placeholder">CLIENTE C</span><span class="marca-tag">Logo pendiente</span></div>
+      <div class="marca-card reveal"><span class="marca-placeholder">CLIENTE D</span><span class="marca-tag">Logo pendiente</span></div>
     </div>
   </div>
 </section>
@@ -654,15 +601,22 @@
   <div class="wrap contacto-wrap">
     <div class="contacto-info reveal">
       <span class="eyebrow" style="color:var(--blue);">Hablemos de tu proyecto</span>
-      <h2>Cuéntanos qué <em class="hl">necesitas</em>.</h2>
-      <p>Respondemos en 24 horas con propuesta y tiempos.</p>
+      <h2>Danos los detalles de <em class="hl">tu pedido</em>.</h2>
+      <p>Un especialista revisa tu solicitud y te contacta en menos de 24 horas.</p>
       <div class="info-row"><svg class="icon"><use href="#i-message"/></svg><span><span class="k">WhatsApp</span><span>Respuesta directa, sin formularios.</span></span></div>
-      <div class="info-row"><svg class="icon"><use href="#i-pin"/></svg><span><span class="k">Cobertura</span><span>Todo el país.</span></span></div>
+      <div class="info-row"><svg class="icon"><use href="#i-pin"/></svg><span><span class="k">Cobertura</span><span>Despachos a todo el país.</span></span></div>
       <div class="info-row"><svg class="icon"><use href="#i-layers"/></svg><span><span class="k">Volumen</span><span>Desde lotes piloto hasta producción mensual.</span></span></div>
       <a class="btn btn-secondary" id="waInfoBtn" href="#" target="_blank" rel="noopener" style="margin-top:28px;"><svg class="icon"><use href="#i-message"/></svg>Escribir por WhatsApp</a>
     </div>
 
     <form class="form-card reveal" id="leadForm">
+      <div class="form-kicker">
+        <span class="form-kicker-badge"><svg class="icon icon-lg"><use href="#i-doc"/></svg></span>
+        <div>
+          <div class="form-kicker-title">Formulario de cotización</div>
+          <div class="form-kicker-sub">Completa tus datos y recibe una propuesta a la medida.</div>
+        </div>
+      </div>
       <div class="field full">
         <label>Empresa <span class="req">*</span></label>
         <input type="text" name="empresa" required placeholder="Razón social">
@@ -689,14 +643,12 @@
           <input type="tel" name="celular" required placeholder="+51 9xx xxx xxx">
         </div>
         <div class="field">
-          <label>Producto de interés <span class="req">*</span></label>
+          <label>Servicio de interés <span class="req">*</span></label>
           <select name="productoInteres" required>
             <option value="" disabled selected>Selecciona una opción</option>
-            <option>Mochilas</option>
-            <option>Bolsos</option>
-            <option>Loncheras</option>
-            <option>Cartucheras</option>
-            <option>Varios productos</option>
+            <option>Maquila y confección (B2B)</option>
+            <option>Regalos corporativos</option>
+            <option>Ambos</option>
           </select>
         </div>
         <div class="field full">
@@ -732,7 +684,7 @@
   <div class="wrap footer-wrap">
     <img src="logo.png" alt="TUTOKEYA!">
     <div class="footer-links">
-      <a href="#productos">Productos</a>
+      <a href="#servicios">Servicios</a>
       <a href="#recorrido">Recorrido</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -776,7 +728,7 @@
           porCategoria[cat].push(img);
         });
 
-        // tarjetas de producto + tiles del hero: una sola foto por categoría
+        // tarjetas de servicio: una sola foto por categoría (servicio-maquila / servicio-regalos)
         document.querySelectorAll('[data-categoria]').forEach(function(el){
           const cat = el.getAttribute('data-categoria');
           if (cat === 'marcas') return; // se maneja aparte (varias imágenes)
@@ -787,21 +739,20 @@
           img.src = foto.url;
           img.alt = foto.alt || cat;
           img.loading = 'lazy';
+          el.innerHTML = '';
           el.appendChild(img);
-          el.classList.add('has-photo');
         });
 
-        // logos de marcas: varias imágenes en el carrusel
+        // logos de marcas: una tarjeta por imagen
         const marcas = porCategoria['marcas'];
-        const track = document.getElementById('marcasTrack');
-        if (marcas && marcas.length && track) {
-          track.innerHTML = marcas.map(function(m){
-            return '<div class="marca-logo is-img"><img src="' + m.url + '" alt="' + (m.alt || 'Cliente') + '" loading="lazy"></div>';
+        const marcasGrid = document.getElementById('marcasGrid');
+        if (marcas && marcas.length && marcasGrid) {
+          marcasGrid.innerHTML = marcas.map(function(m){
+            return '<div class="marca-card reveal in"><img src="' + m.url + '" alt="' + (m.alt || 'Cliente') + '" loading="lazy"></div>';
           }).join('');
-          track.innerHTML += track.innerHTML; // duplicar para el loop continuo
         }
       })
-      .catch(function(){ /* si falla, se mantienen los íconos de referencia */ });
+      .catch(function(){ /* si falla, se mantienen los placeholders de referencia */ });
   }
 
   /* ---------- formulario de leads ---------- */
@@ -917,10 +868,6 @@
   } else {
     revealEls.forEach(function(el){ el.classList.add('in'); });
   }
-
-  /* duplicar el track de logos para el loop continuo del carrusel */
-  const track = document.getElementById('marcasTrack');
-  if (track) track.innerHTML += track.innerHTML;
 
   /* ---------- barra de progreso + header dinámico al hacer scroll ---------- */
   const progressBar = document.getElementById('scrollProgress');
