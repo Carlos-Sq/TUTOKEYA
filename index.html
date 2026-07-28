@@ -961,6 +961,41 @@
     });
   });
 
+  /* ================== VIDEOS DEL RECORRIDO ==================
+     Pega aquí los videos que quieras mostrar. Cada uno necesita:
+     - titulo: el nombre que se ve en negrita
+     - descripcion: (opcional) una frase corta debajo del título
+     - embedUrl: el link "embed" del video (no el link normal)
+
+     Cómo sacar el link "embed" si el video está en GOOGLE DRIVE:
+       1. En Drive, clic derecho sobre el video -> "Compartir"
+       2. Asegúrate que el acceso diga "Cualquier persona con el enlace"
+       3. Copia el link, se ve así:
+            https://drive.google.com/file/d/1AbCdEfGhIjKlMnOpQr/view?usp=sharing
+       4. De ese link, copia solo el código largo entre "/d/" y "/view"
+          (en el ejemplo: 1AbCdEfGhIjKlMnOpQr) — ese es el ID del video
+       5. Arma el embedUrl así, reemplazando TU_ID_AQUI por ese código:
+            https://drive.google.com/file/d/TU_ID_AQUI/preview
+
+     Cómo sacar el link "embed" si el video está en YOUTUBE:
+       1. Abre el video en YouTube
+       2. Clic en "Compartir" -> "Insertar"
+       3. Copia solo la URL que está dentro de src="..."
+          (se ve así: https://www.youtube.com/embed/XXXXXXXXXXX)
+
+     Para agregar un video nuevo, copia un bloque { ... } completo,
+     pégalo antes del corchete de cierre "]" y cambia sus datos.
+     Para quitar uno, borra su bloque { ... } completo (con la coma).
+  ============================================================= */
+  const VIDEOS = [
+    {
+      titulo: 'Corte de tela',
+      descripcion: 'Así empieza cada lote de producción.',
+      embedUrl: 'https://drive.google.com/file/d/1XZQGQPFh9F6K98x9JLVf365j-xTjWZBZ/preview'
+    }
+    // { titulo: 'Otro paso', descripcion: 'Texto opcional', embedUrl: 'https://drive.google.com/file/d/OTRO_ID/preview' },
+  ];
+
   /* ---------- galería de videos: el recorrido completo ---------- */
   const videoGrid = document.getElementById('videoGrid');
 
@@ -990,16 +1025,7 @@
     }).join('');
   }
 
-  if (CONFIG.SCRIPT_URL.indexOf('PEGA_AQUI') === -1) {
-    fetch(CONFIG.SCRIPT_URL + '?accion=listarVideos')
-      .then(function(r){ return r.json(); })
-      .then(function(json){ renderVideos(json.videos); })
-      .catch(function(){
-        videoGrid.innerHTML = '<div class="recorrido-empty">No se pudieron cargar los videos por ahora.</div>';
-      });
-  } else {
-    videoGrid.innerHTML = '<div class="recorrido-empty">Configura SCRIPT_URL para mostrar aquí el recorrido real del taller.</div>';
-  }
+  renderVideos(VIDEOS);
 
   /* ---------- FAQ acordeón ---------- */
   document.querySelectorAll('.faq-item').forEach(function(item){
