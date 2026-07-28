@@ -178,18 +178,41 @@
   }
 
   /* ---------- hero ---------- */
+  /* Split between text column / image column, expressed as unitless fr
+     weights so the grid always sums cleanly and never overflows.
+     These are the only values that change across breakpoints. */
   .hero{
+    --hero-text-fr: 35;
+    --hero-img-fr: 65;
+    --hero-img-pct: 0.65; /* keep in sync with --hero-img-fr / 100 */
     background:var(--blue);
     color:#fff;
     position:relative;
     overflow:hidden;
     padding:clamp(48px,7vw,88px) 0 0;
   }
+  @media (min-width:1366px){
+    .hero{ --hero-text-fr:36; --hero-img-fr:64; --hero-img-pct:0.64; }
+  }
+  @media (min-width:1440px){
+    .hero{ --hero-text-fr:38; --hero-img-fr:62; --hero-img-pct:0.62; }
+  }
+  @media (min-width:1920px){
+    .hero{ --hero-text-fr:40; --hero-img-fr:60; --hero-img-pct:0.60; }
+  }
   .hero .wrap{ position:relative; z-index:1; }
   .hero-grid{
-    display:grid; grid-template-columns:0.82fr 1.18fr; gap:32px; align-items:center;
+    display:grid;
+    grid-template-columns: calc(var(--hero-text-fr) * 1fr) calc(var(--hero-img-fr) * 1fr);
+    gap:32px;
+    align-items:center;
   }
-  .hero-content{ text-align:left; padding-bottom:clamp(60px,7vw,90px); }
+  .hero-content{
+    text-align:left;
+    padding-bottom:clamp(60px,7vw,90px);
+    max-width:560px; /* never lets the copy invade the image half */
+    min-width:0;
+  }
   .hero h1{
     font-size:clamp(38px,4.6vw,58px); color:#fff; line-height:1.12; letter-spacing:-0.02em;
   }
@@ -200,46 +223,63 @@
   .fade-up{ opacity:0; transform:translateY(16px); animation:fadeUp .7s ease forwards; }
   @keyframes fadeUp{ to{ opacity:1; transform:translateY(0); } }
   .hero p.lead{ font-size:17.5px; font-weight:500; color:rgba(255,255,255,0.82); max-width:520px; margin:20px 0 0; line-height:1.6; }
+
+  /* CSS Grid auto-fit: the three feature blocks reflow on their own
+     depending on available width, they never overlap and never spill
+     out of the container. */
   .hero-features{
-    display:flex; flex-wrap:wrap; gap:0; margin-top:34px; padding-top:26px; border-top:1px solid rgba(255,255,255,0.16);
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
+    gap:18px 0;
+    margin-top:34px; padding-top:26px; border-top:1px solid rgba(255,255,255,0.16);
   }
   .hero-feature{
-    display:flex; align-items:flex-start; gap:12px; flex:1 1 200px;
+    display:flex; align-items:flex-start; gap:12px;
     padding:0 22px; border-left:1px solid rgba(255,255,255,0.16);
+    min-width:0;
   }
   .hero-feature:first-child{ padding-left:0; border-left:none; }
   .hero-feature .icon{ color:var(--yellow); width:22px; height:22px; flex:0 0 auto; margin-top:1px; }
   .hero-feature strong{ display:block; font-size:14.5px; font-weight:700; color:#fff; margin-bottom:3px; }
   .hero-feature span{ display:block; font-size:13.5px; font-weight:500; color:rgba(255,255,255,0.68); line-height:1.5; }
-  @media (max-width:760px){
-    .hero-features{ flex-direction:column; gap:18px; }
+  @media (max-width:640px){
+    .hero-features{ grid-template-columns:1fr; gap:18px; }
     .hero-feature{ border-left:none; padding-left:0; border-top:1px solid rgba(255,255,255,0.14); padding-top:16px; }
     .hero-feature:first-child{ border-top:none; padding-top:0; }
   }
   .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; justify-content:flex-start; }
-  /* hero-media now lives OUTSIDE .wrap (direct child of .hero) so it can bleed
-     edge-to-edge on the right, independent of the max-width wrapper. This does
-     not affect .hero-content, which keeps its original 0.82fr grid column. */
+
+  /* hero-media stays OUTSIDE .wrap (direct child of .hero) so it keeps
+     bleeding edge-to-edge on the right, independent of the max-width
+     wrapper, always flush against the viewport's right edge (no gap of
+     background color visible). Its width tracks the same --hero-img-pct
+     used by the grid column above, so the seam between text and photo
+     lines up without overlap at any resolution or zoom level. */
   .hero-media{
     position:absolute;
     top:0; right:0; bottom:0;
-    height:100%;
+    width:calc(min(100vw, var(--maxw)) * var(--hero-img-pct));
+    min-width:360px;
     display:flex;
     align-items:flex-end;
     justify-content:flex-end;
+    overflow:hidden;
     pointer-events:none;
     z-index:0;
   }
   .hero-media img{
-    height:100%; width:auto; max-width:none; display:block;
+    width:100%; height:100%; max-width:none; display:block;
     object-fit:cover; object-position:bottom right;
   }
   @media (max-width:900px){
     .hero-grid{ grid-template-columns:1fr; gap:40px; }
-    .hero-content{ padding-bottom:0; }
+    .hero-content{ padding-bottom:0; max-width:100%; }
     .hero-media{
       position:static;
+      right:auto;
       height:auto;
+      width:100%;
+      min-width:0;
       display:flex;
       justify-content:center;
       pointer-events:auto;
@@ -572,7 +612,7 @@
     <!-- FOTO PRINCIPAL HERO (mochilas, bolsos, merchandising) -->
     <!-- PEGAR LINK DRIVE -->
     <!-- ============================= -->
-    <img src="https://drive.google.com/thumbnail?id=1XWLhY9_jVpPUcq37VbsbcDgomLJLuAjy&sz=w3000" alt="Mochilas, bolsos y merchandising TUTOKEYA!" loading="lazy">
+    <img src="https://drive.google.com/thumbnail?id=1I05F0Lbev4hr1Zlpe1-MsXoV-zgQPwKN&sz=w3000" alt="Mochilas, bolsos y merchandising TUTOKEYA!" loading="lazy">
   </div>
   <div class="wrap hero-grid">
     <div class="hero-content">
