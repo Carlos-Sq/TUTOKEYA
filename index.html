@@ -183,13 +183,13 @@
     color:#fff;
     position:relative;
     overflow:hidden;
-    padding:clamp(48px,7vw,88px) 0 clamp(60px,7vw,90px);
+    padding:clamp(48px,7vw,88px) 0 0;
   }
   .hero .wrap{ position:relative; z-index:1; }
   .hero-grid{
-    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+    display:grid; grid-template-columns:0.82fr 1.18fr; gap:32px; align-items:center;
   }
-  .hero-content{ text-align:left; }
+  .hero-content{ text-align:left; padding-bottom:clamp(60px,7vw,90px); }
   .hero h1{
     font-size:clamp(38px,4.6vw,58px); color:#fff; line-height:1.12; letter-spacing:-0.02em;
   }
@@ -217,11 +217,38 @@
     .hero-feature:first-child{ border-top:none; padding-top:0; }
   }
   .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; justify-content:flex-start; }
-  .hero-media{ position:relative; }
-  .hero-media img{ width:100%; height:auto; display:block; border-radius:var(--radius); }
+  /* hero-media now lives OUTSIDE .wrap (direct child of .hero) so it can bleed
+     edge-to-edge on the right, independent of the max-width wrapper. This does
+     not affect .hero-content, which keeps its original 0.82fr grid column. */
+  .hero-media{
+    position:absolute;
+    top:0; right:0; bottom:0;
+    height:100%;
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero-media img{
+    height:100%; width:auto; max-width:none; display:block;
+    object-fit:cover; object-position:bottom right;
+  }
   @media (max-width:900px){
     .hero-grid{ grid-template-columns:1fr; gap:40px; }
-    .hero-media{ order:-1; }
+    .hero-content{ padding-bottom:0; }
+    .hero-media{
+      position:static;
+      height:auto;
+      display:flex;
+      justify-content:center;
+      pointer-events:auto;
+      padding-bottom:clamp(32px,6vw,56px);
+    }
+    .hero-media img{
+      height:auto; width:100%; max-width:520px; margin:0 auto;
+      object-fit:contain;
+    }
   }
   .scroll-cue{
     position:absolute; bottom:18px; left:50%; transform:translateX(-50%); z-index:2;
@@ -540,6 +567,13 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-media fade-up" style="animation-delay:.3s;">
+    <!-- ============================= -->
+    <!-- FOTO PRINCIPAL HERO (mochilas, bolsos, merchandising) -->
+    <!-- PEGAR LINK DRIVE -->
+    <!-- ============================= -->
+    <img src="https://drive.google.com/uc?export=view&id=1FWruVZrl74iWaOkfRdXoXrsAxOju2qCa" alt="Mochilas, bolsos y merchandising TUTOKEYA!" loading="lazy">
+  </div>
   <div class="wrap hero-grid">
     <div class="hero-content">
       <h1>
@@ -568,14 +602,6 @@
         <a class="btn btn-primary" href="#contacto"><svg class="icon" style="color:var(--blue-deep)"><use href="#i-arrow"/></svg>Solicitar cotización</a>
         <a class="btn btn-outline" id="waHeroBtn" href="#" target="_blank" rel="noopener"><svg class="icon" style="color:#fff"><use href="#i-message"/></svg>WhatsApp</a>
       </div>
-    </div>
-
-    <div class="hero-media fade-up" style="animation-delay:.3s;">
-      <!-- ============================= -->
-      <!-- FOTO PRINCIPAL HERO (mochilas, bolsos, merchandising) -->
-      <!-- PEGAR LINK DRIVE -->
-      <!-- ============================= -->
-      <img src="https://drive.google.com/thumbnail?id=1JsoSOJw7MtV_gsz1cuQme_fulqasFnv2&sz=w2000" alt="Mochilas, bolsos y merchandising TUTOKEYA!" loading="lazy">
     </div>
   </div>
   <a class="scroll-cue" href="#servicios">Ver más<svg class="icon"><use href="#i-chevron"/></svg></a>
